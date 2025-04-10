@@ -10,7 +10,7 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  imageName: "DIT_DOCKERHUB_BRUGERNAVN/DIT_REPO_NAVN"
+  imageName: "xxrolexxx/typescriptdock"
 
 steps:
   - task: Docker@2
@@ -22,3 +22,4 @@ steps:
       buildContext: "."
       tags: |
         latest
+        $(Build.BuildId)
