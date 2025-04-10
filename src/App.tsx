@@ -1,7 +1,8 @@
-import { Container, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { Navbar } from "./Navbar";
+import { Box, Container, Typography } from "@mui/material";
+import { useState } from "react";
+import Navbar from "./Navbar";
 import TemporaryDrawer from "./TemporaryDrawer";
+import { Backpack, Tal } from "./test";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -42,6 +43,12 @@ function App() {
           elit. Maecenas dignissim, nisl quis scelerisque iaculis, augue purus
           sagittis justo, nec pulvinar diam dui at est.Lorem ipsum dolor sit
         </Typography>
+        <Box>
+          <Backpack></Backpack>
+        </Box>
+        <Box>
+          <Tal></Tal>
+        </Box>
       </Container>
     </>
   );

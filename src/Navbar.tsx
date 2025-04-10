@@ -1,8 +1,8 @@
-import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "./Link";
 
-const pages = ["Home", "Benefits", "Our Classes", "Contact Us"];
+const NavItem = ["Home", "Benefits", "Our Classes", "Contact Us"];
 
 interface Props {
   selectedPage: string;
@@ -10,11 +10,7 @@ interface Props {
   toggleDrawer: (newOpen: boolean) => () => void;
 }
 
-export const Navbar = ({
-  toggleDrawer,
-  selectedPage,
-  setSelectedPage,
-}: Props) => {
+const Navbar = ({ toggleDrawer, selectedPage, setSelectedPage }: Props) => {
   return (
     <AppBar position="static" color="primary">
       <Toolbar>
@@ -29,10 +25,10 @@ export const Navbar = ({
           <MenuIcon />
         </IconButton>
         <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
-          {pages.map((page) => (
+          {NavItem.map((navItem) => (
             <Link
-              page={page}
-              key={page}
+              page={navItem}
+              key={navItem}
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
@@ -42,3 +38,4 @@ export const Navbar = ({
     </AppBar>
   );
 };
+export default Navbar;
