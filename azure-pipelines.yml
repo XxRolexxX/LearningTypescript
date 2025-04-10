@@ -7,15 +7,19 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'DIT_BRUGERNAVN/DIT_REPOSITORY_NAVN'  # fx: johndoe/my-react-app
 
 steps:
-- task: NodeTool@0
+- task: Docker@2
   inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+    containerRegistry: 'DockerHubConnection'  # Navnet på din service connection
+    repository: '$(imageName)'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
+      $(Build.BuildId)
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
