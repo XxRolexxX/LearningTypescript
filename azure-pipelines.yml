@@ -22,4 +22,3 @@ steps:
       buildContext: "."
       tags: |
         latest
-        $(Build.BuildId)
