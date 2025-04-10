@@ -1,0 +1,25 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'DIT_BRUGERNAVN/DIT_REPOSITORY_NAVN'  # fx: johndoe/my-react-app
+
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DockerHubConnection'  # Navnet på din service connection
+    repository: '$(imageName)'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
+      $(Build.BuildId)
+
