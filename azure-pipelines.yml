@@ -4,22 +4,22 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+  - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 variables:
-  imageName: 'DIT_BRUGERNAVN/DIT_REPOSITORY_NAVN'  # fx: johndoe/my-react-app
+  imageName: "DIT_DOCKERHUB_BRUGERNAVN/DIT_REPO_NAVN"
 
 steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'DockerHubConnection'  # Navnet på din service connection
-    repository: '$(imageName)'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      latest
-      $(Build.BuildId)
-
+  - task: Docker@2
+    inputs:
+      containerRegistry: "DockerHubConnection" # Service connection-navnet
+      repository: "$(imageName)"
+      command: "buildAndPush"
+      Dockerfile: "Dockerfile"
+      buildContext: "."
+      tags: |
+        latest
+        $(Build.BuildId)
